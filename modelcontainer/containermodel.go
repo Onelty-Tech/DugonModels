@@ -11,15 +11,15 @@ type Update struct {
 |____________________________|
 */
 type Header struct {
-	HeaderName    string `json:"Name,omitempty"`
-	HeaderSender  string `json:"Sender,omitempty"`
-	HeaderHost    string `json:"Host,omitempty"`
-	HeaderAction  Action `json:"Action,omitempty"`
-	HeaderRetry   bool   `json:"Retry,omitempty"`
-	HeaderChannel string `json:"Channel,omitempty"`
-	HeaderTarget  string `json:"Target,omitempty"`
-	HeaderDate    string `json:"Date,omitempty"`
-	Pack          Pack   `json:"Pack"`
+	HeaderName            string `json:"Name,omitempty"`
+	HeaderDeliveryQuality string `json:"delivery,omitempty"` // este campo sirve para anotar el canal del reenvio de errores o algun inconveniente relacionado con el contenedor enviado
+	HeaderSender          string `json:"Sender,omitempty"`
+	HeaderHost            string `json:"Host,omitempty"`
+	HeaderAction          Action `json:"Action,omitempty"`
+	HeaderChannel         string `json:"Channel,omitempty"`
+	HeaderTarget          string `json:"Target,omitempty"`
+	HeaderDate            string `json:"Date,omitempty"`
+	Pack                  Pack   `json:"Pack"`
 }
 
 type Options struct {
