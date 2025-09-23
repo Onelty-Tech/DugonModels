@@ -9,8 +9,9 @@ import (
 estructura aun no implementada
 */
 type ErrorHandling struct {
-	Type string `json:"type"`
+	Type string `json:"type"` // tipos de errores para mas adelante ejemplo: "Warning","Error",etc
 	Err  error  `json:"error"`
+	Uuid string `json:"uuid"` // El UUID Del canal de respuesta(chan *modelerror.ErrorHandling)
 }
 
 // const (
