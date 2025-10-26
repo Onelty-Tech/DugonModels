@@ -36,14 +36,10 @@ type InCase struct {
 	Behaviors map[string]any `json:"Behaviors,omitempty"`
 }
 
-type Events []InCase
-
-type Actions []InCase
-
 type Body struct {
-	Events      Events  `json:"Events"`
-	Actions     Actions `json:"Actions"`
-	BodyContent string  `json:"Content,omitempty"`
+	Events      []InCase `json:"Events"`
+	Actions     []InCase `json:"Actions"`
+	BodyContent string   `json:"Content,omitempty"`
 }
 
 type Pack struct {
