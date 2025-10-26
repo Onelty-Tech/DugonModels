@@ -3,18 +3,18 @@ package modelcontainer
 /*
 Crea y agrega un evento a la lista de eventos de la estructura
 */
-func (c *Container) AddCustomEvent(tried string, condition map[string]string, action map[string]interface{}) {
+func (c *Container) AddCustomEvent(tried string, condition map[string]string, behavior map[string]interface{}) {
 	inCase := InCase{
 		InCaseTried: tried,
 		Condition:   condition,
-		Action:      action,
+		Behaviors:   behavior,
 	}
-	c.Events = append(c.Events, inCase)
+	c.Body.Events = append(c.Body.Events, inCase)
 }
 
 /*
 	Funcion que remueve todos los eventos en el container
 */
 func (c *Container) RemoveEvents() {
-	c.Events = nil
+	c.Body.Events = nil
 }

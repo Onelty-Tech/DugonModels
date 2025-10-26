@@ -15,19 +15,35 @@ type Header struct {
 	HeaderDeliveryQuality string `json:"delivery,omitempty"` // este campo sirve para anotar el canal del reenvio de errores o algun inconveniente relacionado con el contenedor enviado
 	HeaderSender          string `json:"Sender,omitempty"`
 	HeaderHost            string `json:"Host,omitempty"`
-	HeaderAction          Action `json:"Action,omitempty"`
-	HeaderChannel         string `json:"Channel,omitempty"`
-	HeaderTarget          string `json:"Target,omitempty"`
-	HeaderDate            string `json:"Date,omitempty"`
-	Pack                  Pack   `json:"Pack"`
+
+	/*
+		HeaderAction          Action `json:"Action,omitempty"`
+	*/
+	HeaderChannel string `json:"Channel,omitempty"`
+	HeaderTarget  string `json:"Target,omitempty"`
+	HeaderDate    string `json:"Date,omitempty"`
+	Pack          Pack   `json:"Pack"`
 }
 
 type Options struct {
 	OptionsTypeUpdate bool `json:"TypeUpdate"`
 }
 
+type InCase struct {
+	InCaseTried string            `json:"Tried,omitempty"`
+	Condition   map[string]string `json:"Condition,omitempty"`
+	// un mapa de actions dentro de otro mapa para meter funcionalidades unicas a cada action
+	Behaviors map[string]any `json:"Behaviors,omitempty"`
+}
+
+type Events []InCase
+
+type Actions []InCase
+
 type Body struct {
-	BodyContent string `json:"Content,omitempty"`
+	Events      Events  `json:"Events"`
+	Actions     Actions `json:"Actions"`
+	BodyContent string  `json:"Content,omitempty"`
 }
 
 type Pack struct {
@@ -37,23 +53,22 @@ type Pack struct {
 	History []Update `json:"History,omitempty"`
 }
 
-type InCase struct {
-	InCaseTried string            `json:"Tried,omitempty"`
-	Condition   map[string]string `json:"Condition,omitempty"`
-	// un mapa de actions dentro de otro mapa para meter funcionalidades unicas a cada action
-	Action map[string]any `json:"Action,omitempty"`
-}
-
-type Events []InCase
-
-type Action struct {
-	ActionName string         `json:"Name"`
-	Actions    map[string]any `json:"Actions"`
-}
-
 type Container struct {
-	Header  Header   `json:"Header"`
-	Options Options  `json:"Options"`
-	Body    Body     `json:"Body"`
-	Events  []InCase `json:"Events"`
+	Header  Header  `json:"Header"`
+	Options Options `json:"Options"`
+	Body    Body    `json:"Body"`
+}
+
+/*
+Metodo de InCase que obtine los comportamientos.
+*/
+func (inCase *InCase) GetBehaviorCase() map[string]any {
+	return inCase.Behaviors
+}
+
+/*
+Metodo de InCase que remuve todos los comportamientos del InCase
+*/
+func (inCase *InCase) RemoveBehaviors() {
+	inCase.Behaviors = nil
 }
