@@ -12,7 +12,7 @@ func (c *Container) AddCustomAction(actions map[string]any) {
 /*
 Obtiene el slice de actions.
 */
-func (c *Container) GetActions() Actions {
+func (c *Container) GetActions() []InCase {
 	return c.Body.Actions
 }
 
