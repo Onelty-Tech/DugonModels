@@ -18,3 +18,10 @@ func (c *Container) AddCustomEvent(tried string, condition map[string]string, be
 func (c *Container) RemoveEvents() {
 	c.Body.Events = nil
 }
+
+/*
+	Funcion que devuelve el slice de eventos.
+*/
+func (c *Container) GetEvents() []InCase {
+	return c.Body.Events
+}
